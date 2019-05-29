@@ -1,0 +1,29 @@
+#因为使用了配置中心,所以像server.port这种可能会变动的配置参数,将有配置中心给出,所以将其注释掉
+#此配置文件也改名为bootstap.yml,此配置文件的启动顺序在application.yml之前,包含的是核心启动功能,比如指定注册中心,
+#  配置中心,服务名称,要从配置中心获取的配置文件
+
+
+#服务端口号
+#server:
+#  port: 8771
+
+#指定注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+#服务的名称
+spring:
+  application:
+    name: api-gateway
+  #指定要使用的配置中心
+  cloud:
+    config:
+      discovery:
+        service-id: config-server
+        enabled: true
+      #指定要获取的配置文件
+      profile: test
+      #label控制的是分支(默认master),profile控制的是配置文件的后缀,推荐使用分支
